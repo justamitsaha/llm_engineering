@@ -1,0 +1,603 @@
+# Open-Source Models & Ways to Run LLMs
+
+## 1\. Open-Source Model Landscape
+
+The open-source side of the LLM ecosystem includes several major model families.
+
+The main ones discussed are:
+
+```
+Meta       → Llama
+Mistral    → Mistral
+Alibaba    → Qwen
+Google     → Gemma
+Microsoft  → Phi
+DeepSeek   → DeepSeek
+OpenAI     → Open-source GPT
+```
+
+The instructor generally reserves **"frontier models"** for closed-source models, although the term can sometimes be used more broadly.
+
+* * *
+
+# 2\. Meta — Llama
+
+**Llama** from Meta is presented as one of the most important open-source model families.
+
+Meta was one of the first major companies to strongly embrace open-source AI.
+
+The instructor suggests that Meta may have used open sourcing as a way to differentiate itself from OpenAI and Anthropic, but regardless of the motivation, it has been highly successful.
+
+Llama is widely used throughout the course.
+
+* * *
+
+## Llama 3.2
+
+Llama 3.2 is particularly notable because it comes in very small versions.
+
+The lesson mentions versions with approximately:
+
+-   1 billion parameters
+-   3 billion parameters
+
+These models are small enough to be practical for **local execution**.
+
+They are sometimes referred to as **SLMs (Small Language Models)**, although even a 3-billion-parameter model is still quite substantial.
+
+* * *
+
+# 3\. Mistral
+
+**Mistral** is a French AI company with several open-source models.
+
+One interesting characteristic discussed is the **Mixture of Experts (MoE)** architecture.
+
+Instead of treating the entire model as one monolithic network, an MoE model contains multiple smaller specialist components.
+
+Conceptually:
+
+```
+                    Input
+                      ↓
+               Routing mechanism
+                 ↙   ↓   ↘
+           Expert 1 Expert 2 Expert 3
+                 ↘   ↓   ↙
+                    Output
+```
+
+The model can direct different inputs toward different experts depending on what the question requires.
+
+* * *
+
+# 4\. Qwen
+
+**Qwen** is a model family from **Alibaba Cloud**.
+
+The lesson describes Qwen as:
+
+-   Powerful
+-   Less well-known than Llama
+-   Very enjoyable to work with
+-   Worth trying when experimenting with open-source models
+
+The course will use Qwen during its model comparisons.
+
+* * *
+
+# 5\. Gemma
+
+**Gemma** is Google's open-source model family.
+
+It can be thought of as the open-source cousin of Google's closed-source **Gemini** models.
+
+```
+Google
+├── Gemini → Closed-source
+└── Gemma  → Open-source
+```
+
+Gemma comes in many different sizes.
+
+One particularly interesting version has only around:
+
+> **270 million parameters**
+
+This is genuinely a very small language model.
+
+It isn't particularly impressive compared with large LLMs, but it is still capable of generating and interacting with language despite its extremely small size.
+
+* * *
+
+# 6\. Microsoft — Phi
+
+Microsoft has its own range of open-source models called **Phi**.
+
+The lesson mentions **Phi-4** as the latest version at the time of recording.
+
+The instructor considers Phi particularly interesting for:
+
+-   Tool calling
+-   Commercial applications
+
+The course will compare Phi with the other open-source models.
+
+* * *
+
+# 7\. DeepSeek
+
+DeepSeek became one of the most talked-about open-source AI projects.
+
+However, the important reason for its impact wasn't necessarily that DeepSeek was the most powerful model available.
+
+The significant achievement was **efficiency**.
+
+* * *
+
+## DeepSeek's Key Innovation
+
+The lesson describes DeepSeek as achieving **frontier-level capability at a fraction of the training cost** of leading closed-source models.
+
+The comparison given is roughly:
+
+```
+OpenAI GPT training
+→ $100M+ range
+
+DeepSeek training
+→ ~$4M claimed
+```
+
+The exact figures are presented as the companies' reported/claimed training costs, but the important point is the dramatic difference in efficiency.
+
+The lesson's main takeaway is:
+
+> DeepSeek demonstrated that highly capable models could potentially be built much more efficiently than previously assumed.
+
+* * *
+
+# 8\. DeepSeek's Main Model
+
+The main DeepSeek model discussed has approximately:
+
+> **671 billion parameters**
+
+That is far too large for a typical personal computer.
+
+However, smaller variants are available.
+
+* * *
+
+# 9\. DeepSeek Distillation
+
+One of the most interesting concepts introduced is **distillation**.
+
+The smaller models associated with DeepSeek are not necessarily smaller versions of DeepSeek itself.
+
+Instead, DeepSeek used its large model to generate **synthetic data**.
+
+That data was then used to train smaller models such as Llama- and Qwen-based models.
+
+Conceptually:
+
+```
+Large DeepSeek model
+        ↓
+Generate synthetic training data
+        ↓
+Train smaller model
+        ↓
+Smaller Llama / Qwen-based model
+```
+
+This process is called:
+
+> **Distillation**
+
+The smaller model effectively learns from outputs generated by the much larger model.
+
+This allows some of the capabilities of the larger model to be transferred into a much smaller model.
+
+* * *
+
+# 10\. OpenAI's Open-Source GPT
+
+The lesson also discusses an open-source/open-weight GPT model released by OpenAI.
+
+This was notable because OpenAI is primarily associated with its closed-source GPT models.
+
+The release therefore represented a significant development in the open-source ecosystem.
+
+The instructor suggests that the growing strength of open-source models such as DeepSeek may have contributed to OpenAI's decision to release an open model.
+
+The model comes in different sizes, including a smaller version used in the course and a much larger version.
+
+* * *
+
+# 11\. The Three Ways to Use an LLM
+
+One of the most important sections of this lesson is distinguishing **three different ways of working with models**.
+
+```
+1. Use a packaged AI product
+2. Call a model through an API
+3. Run an open-source model yourself
+```
+
+These are fundamentally different approaches.
+
+* * *
+
+# 12\. Method 1 — Packaged AI Products
+
+The first approach is using an AI product that provides a user interface and additional functionality.
+
+The most familiar example is:
+
+> **ChatGPT**
+
+When using ChatGPT, you aren't simply interacting with a raw LLM.
+
+You are using a **product built around an LLM**.
+
+Conceptually:
+
+```
+                 ChatGPT
+                    │
+       ┌────────────┼────────────┐
+       │            │            │
+     Model       Memory       Web Search
+       │            │            │
+       └────────────┴────────────┘
+                    ↓
+             User Interface
+```
+
+The product contains additional functionality built around the underlying model.
+
+Therefore:
+
+> **ChatGPT is a product, not simply a model.**
+
+The same general distinction applies to products built around Claude and other models.
+
+* * *
+
+# 13\. Method 2 — Cloud APIs
+
+The second approach is calling an LLM through an **API**.
+
+Instead of interacting with a graphical product, your application sends requests directly to a model provider.
+
+Conceptually:
+
+```
+Your Application
+       ↓
+     API
+       ↓
+Cloud Model
+       ↓
+    Response
+```
+
+Examples include calling models from:
+
+-   OpenAI
+-   Anthropic
+-   Google
+-   Other model providers
+
+This is the approach used when you want to integrate an LLM into your own software.
+
+* * *
+
+# 14\. Managed Cloud Services
+
+There is another variation of cloud-based model access: **managed AI services**.
+
+Examples mentioned include:
+
+```
+Amazon → Bedrock
+Google → Vertex AI
+Microsoft → Azure ML
+```
+
+These services act as a managed layer through which you can access models.
+
+Conceptually:
+
+```
+Your Application
+       ↓
+Managed AI Service
+       ↓
+Model Provider / Model
+       ↓
+Response
+```
+
+This can provide additional infrastructure and management capabilities.
+
+* * *
+
+# 15\. Model-Routing Platforms
+
+There are also services that provide access to multiple models through a single interface.
+
+The lesson mentions:
+
+> **OpenRouter**
+
+The basic idea is:
+
+```
+                 Your Application
+                        ↓
+                   OpenRouter
+                 ↙    ↓     ↘
+              Model A Model B Model C
+```
+
+The platform can route requests to different model providers.
+
+This makes it easier to experiment with and compare different models without building a separate integration for every provider.
+
+* * *
+
+# 16\. Groq vs Grok
+
+The lesson points out an easy source of confusion:
+
+### Grok
+
+Spelled with a **K**:
+
+> **Grok**
+
+This is the model associated with Elon Musk's xAI.
+
+### Groq
+
+Spelled with a **Q**:
+
+> **Groq**
+
+This is something completely different.
+
+Groq provides infrastructure for running models extremely quickly using specialized hardware.
+
+So:
+
+```
+Grok → AI model / xAI
+
+Groq → AI inference infrastructure
+```
+
+This distinction is worth remembering because the names are extremely similar.
+
+* * *
+
+# 17\. Method 3 — Run an Open-Source Model Yourself
+
+The third approach is to actually download an open-source model and run it yourself.
+
+There is:
+
+-   No cloud API requirement for inference.
+-   No external model provider handling the inference.
+-   No packaged AI product.
+
+Instead:
+
+```
+Your Computer
+     ↓
+Model
+     ↓
+Your Hardware
+     ↓
+Inference
+```
+
+This is called **direct inference**.
+
+* * *
+
+# 18\. Two Ways to Run Open-Source Models Locally
+
+The course focuses on two particularly important approaches:
+
+```
+Local Open-Source Models
+│
+├── Ollama
+└── Hugging Face Transformers
+```
+
+They accomplish similar broad goals but work differently.
+
+* * *
+
+# 19\. Hugging Face Transformers
+
+With the Hugging Face Transformers library, you work directly with the model implementation.
+
+Conceptually:
+
+```
+Model code
+   +
+Model weights
+   ↓
+Hugging Face Transformers
+   ↓
+Python
+   ↓
+Your computer
+   ↓
+Model inference
+```
+
+You are essentially running the model's neural-network code yourself.
+
+This provides a high degree of control.
+
+You can work directly with:
+
+-   Model architecture
+-   Weights
+-   Tokenizers
+-   Neural-network operations
+-   Fine-tuning
+-   Other model internals
+
+* * *
+
+# 20\. Ollama
+
+**Ollama** provides a more packaged approach to running open-source models locally.
+
+Instead of working directly with all the underlying model code, Ollama prepares models in an optimized format.
+
+Conceptually:
+
+```
+Open-source model
+       ↓
+Ollama packaging
+       ↓
+Compressed / optimized model
+       ↓
+Ollama application
+       ↓
+Local API
+```
+
+Ollama is designed to make local model execution relatively easy.
+
+* * *
+
+# 21\. Ollama vs Hugging Face Transformers
+
+|     | Ollama | Hugging Face Transformers |
+| --- | --- | --- |
+| Approach | Packaged | Direct model code |
+| Ease of use | Very easy | More technical |
+| Model selection | More limited | Very broad |
+| Optimization | Highly packaged | More configurable |
+| Local API | Yes | Can be built/used |
+| Model internals | More abstracted | Direct access |
+| Best for | Easy local inference | Development, experimentation, customization |
+
+### Mental model
+
+> **Ollama = packaged, fast, convenient local model execution**
+
+> **Transformers = direct access to the model and its code**
+
+* * *
+
+# 22\. What Is Inference?
+
+The lesson introduces an important term:
+
+> **Inference = running a trained model on new input to obtain an output.**
+
+For example:
+
+```
+Trained Model
+     +
+New Prompt
+     ↓
+Inference
+     ↓
+Generated Response
+```
+
+Training creates/adjusts the model.
+
+Inference is what you do afterward when you actually **use the trained model**.
+
+The course will perform a lot of inference throughout the remaining material.
+
+* * *
+
+# 23\. The Complete Landscape
+
+The most useful mental model from this lesson is:
+
+```
+                    LLMs
+                     │
+        ┌────────────┼────────────┐
+        │            │            │
+   AI Products      APIs      Run Yourself
+        │            │            │
+     ChatGPT     OpenAI API      Ollama
+     Claude      Anthropic       Transformers
+     etc.        Gemini API
+                  Bedrock
+                  Vertex
+                  Azure
+                  OpenRouter
+```
+
+And the model ecosystem itself can be divided into:
+
+```
+                    Models
+                       │
+             ┌─────────┴─────────┐
+             │                   │
+        Closed-source        Open-source
+             │                   │
+       GPT / Claude          Llama / Qwen
+       Gemini / Grok         Gemma / Phi
+                             Mistral / DeepSeek
+                             Open-source GPT
+```
+
+* * *
+
+# Key Takeaways
+
+-   **Llama** is one of the most important open-source model families.
+-   Meta strongly embraced open-source AI and made Llama widely available.
+-   **Llama 3.2** is particularly useful for local execution because of its small 1B and 3B variants.
+-   **Mistral** uses models including Mixture-of-Experts architectures.
+-   **Qwen** from Alibaba Cloud is a powerful but comparatively less famous open-source model family.
+-   **Gemma** is Google's open-source counterpart to Gemini.
+-   Gemma includes extremely small models, including a **270M-parameter** version.
+-   **Phi** is Microsoft's open-source model family and is particularly interesting for tool calling and commercial applications.
+-   **DeepSeek** became notable primarily because of its remarkable training efficiency and low reported training cost.
+-   DeepSeek's main model has around **671B parameters**.
+-   Smaller DeepSeek-related models can be produced through **distillation**, where a large model generates synthetic data used to train smaller models.
+-   OpenAI has also released open-source/open-weight GPT models.
+-   There are **three fundamental ways to use an LLM**:
+
+```
+1. Packaged AI product
+2. Cloud API
+3. Run the model yourself
+```
+
+-   **ChatGPT** is an AI product built around models and additional functionality such as memory and web search.
+-   APIs allow applications to call models directly.
+-   Managed services include **Amazon Bedrock, Google Vertex AI, and Microsoft Azure ML**.
+-   **OpenRouter** can provide access to multiple model providers through one platform.
+-   **Groq** and **Grok** are completely different:
+    
+    -   Groq → inference infrastructure
+    -   Grok → xAI model
+-   Open-source models can be run directly on your own hardware.
+-   Two important approaches are:
+    
+    -   **Ollama** — packaged, optimized, easy local execution
+    -   **Hugging Face Transformers** — direct access to model code and weights
+-   **Inference** simply means running a trained model on new input to produce an output
