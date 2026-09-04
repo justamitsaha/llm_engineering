@@ -300,6 +300,8 @@ The lecturer describes RAG as having a **"zoo of hacks"**—many techniques laye
 
 A RAG system may need experimentation around:
 
+![](./RAG.png)
+
 ```
 How documents are split
         ↓
@@ -370,5 +372,3 @@ The core intuition is:
 11.  **LangChain** and **Chroma** are introduced as tools for building the practical RAG pipeline.
 
 ## One-line memory aid
-
-**RAG turns the question into a vector → finds similar information in a vector store → retrieves the text → gives that context to the LLM → generates the answer.**
